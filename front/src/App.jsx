@@ -2,6 +2,7 @@
 import './App.css'
 import Card from "./components/Card"
 import Cards from "./components/Cards"
+import characters, { Rick } from './data.js';
 
 
 function App() {
