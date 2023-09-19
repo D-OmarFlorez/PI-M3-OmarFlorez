@@ -1,7 +1,7 @@
 
-import Card from "./Card"
+import Card from "../card/Card"
 
-const Cards = ({characters}) =>{
+const Cards = ({characters, onClose}) =>{
    return (
       <div>
          {
@@ -10,13 +10,14 @@ const Cards = ({characters}) =>{
                return(
                   <Card
                   key={id}
+                  id={id}
                   name = {name}
                   status = {status}
                   species = {species}
                   gender = {gender}
                   image = {image}
                   origin = {origin.name}
-                  onClose={() => alert('Emulamos que se cierra la card')}
+                  onClose={onClose}
                   />
                )
             })
