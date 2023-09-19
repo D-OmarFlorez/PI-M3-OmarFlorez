@@ -1,7 +1,9 @@
-
+import { Route, Routes } from "react-router-dom"
 import './App.css'
 import Cards from "./components/cards/Cards"
-import Nav from './components/nav/Nav';
+import Nav from './components/nav/Nav'
+import About from './components/about/About'
+import Detail from './components/detail/Detail'
 import { useState } from 'react';
 import axios from "axios"
 
@@ -30,7 +32,11 @@ function App() {
   return (
     <div className='App'>
       <Nav onSearch={onSearch} />
-      <Cards characters={characters} onClose={onClose} />
+      <Routes>
+        <Route path="/home" element={<Cards characters={characters} onClose={onClose} />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/detail/:id" element={<Detail />} />
+      </Routes>
     </div>
   )
 }

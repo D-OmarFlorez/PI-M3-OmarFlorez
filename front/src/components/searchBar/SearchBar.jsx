@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function SearchBar({onSearch}) {
+const SearchBar = ({onSearch}) =>{
 
    const [id, setId] = useState("")
 
@@ -15,7 +15,7 @@ export default function SearchBar({onSearch}) {
 
    return (
       <div>
-          <input type='search' onChange={handleChange} value={id} />
+          <input type='search' onChange={handleChange} value={id} placeholder='ID...'/>
          <button onClick={()=>handleSearch()}>Agregar</button> 
       {/* para pasar argumentos a un evento debo colocarle un cb
       el callback es para que no se llame automaticamente la función
@@ -23,3 +23,4 @@ export default function SearchBar({onSearch}) {
       </div>
    );
 }
+export default SearchBar
