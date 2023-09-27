@@ -1,65 +1,137 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
-import "./App.css";
-import Cards from "./components/cards/Cards";
-import Nav from "./components/nav/Nav";
-import About from "./components/about/About";
-import Detail from "./components/detail/Detail";
-import Form from "./components/form/Form";
-import { useState, useEffect } from "react";
-import axios from "axios";
+/*styles*/
+import './App.css'
+
+/*cmponentes de render*/
+import Cards from './components/cards/Cards.jsx';
+import Nav from './components/nav/Nav';
+import About from './components/about/About';
+import Detail from './components/detail/Detail';
+import Form from './components/form/Form';
+import Favorites from './components/favorites/Favorites';
+
+/*dependencias*/
+import axios from 'axios'
+
+/*hooks*/
+import {useState, useEffect} from 'react';
+import { useLocation, Route, Routes, useNavigate} from 'react-router-dom';
+
+/*credentials*/
+const USER_EMAIL = 'hola@gmail.com'
+const USER_PASSWORD = '1234asdf'
 
 
-function App() {
-  const [characters, setCharacters] = useState([]);
-  const [access, setAccess] = useState(false);
+
+const App = () => {
+
+  const [detalles, setdetalles] = useState (false);
+  const [personaje, setPersonaje] = useState (null);
   const navigate = useNavigate();
-  let EMAIL = "seba@gmail.com";
-  let PASSWORD = "seba1234";
-
+  const [characters, setCharacters] = useState([]);
+  const {pathname} = useLocation();
   const onSearch = (id) => {
     axios(`https://rickandmortyapi.com/api/character/${id}`)
-      .then(({ data }) => {
-        if (data.name) {
+    .then(({ data }) => {
+      if (data.name) {
+    
+        if (!characters.some(character => character.id === data.id)) {
           setCharacters((oldChars) => [...oldChars, data]);
+        } else {
+          alert('Este personaje ya está en la lista.');
         }
+      } 
+    })
+    .catch((error) => {
+      alert('¡No hay personajes con este ID!', error);
+    });
+}
+const handleCardClick =(id) =>{
+  axios(`https://rickandmortyapi.com/api/character/${id}`)
+      .then(({ data }) => {
+        setdetalles(data);
+        setPersonaje(true);
       })
-      .catch(() => {
-        alert("¡No hay personajes con este ID!");
+      .catch((error) => {
+        console.error('Error fetching character details:', error);
       });
   };
+  const handleClose = ()=>{
+    setShowDetail(false);
+    setSelectedCharacter(null);
+  }
 
-  const onClose = (id) => {
-    const charactersFiltered = characters.filter((character) => {
-      return character.id !== id;
-    });
-    setCharacters(charactersFiltered);
-  };
-
-  const login = (userData) => {
-    if (userData.password === PASSWORD && userData.email === EMAIL) {
-      setAccess(true);
-      navigate("/home");
+  // const onSearch = (id) => {
+  //   axios(`https://rickandmortyapi.com/api/character/${id}`)
+  //     .then(({data}) => { 
+  //        if (data.name) {
+  //         if (!characters.some(character => character.id ===  data.id)){
+  //         setCharacters((oldChars) => [...oldChars, data]);
+  //         }else{
+  //           alert('este personage ya esta en la lista.');
+  //         }
+  //      }
+  //   })
+  //   .catch(() => {
+  //     alert ('!no hay personajes con este ID')
+  //   })}
+   
+    const [access, setAccess]= useState(false);
+    // function login(userData){
+    //   const navigate = useNavigate();
+    //   if(userData.password === USER_PASSWORD && userData.email === USER_EMAIL){
+    //      setAccess(true)
+    //      navigate("/home")
+    //   } 
+    // }
+    // const onClose =(id) => {
+    //   const characterFilter = characters.filter ((character) =>{
+    //   character.id !== id
+    //   setCharacters(characterFilter) 
+    // })}
+    const onClose = (id) => {
+      const characterFilter = characters.filter((character) => {
+        return character.id !== id; // Filtrar personajes cuyo ID no coincida
+      });
+      setCharacters(characterFilter);
     }
-  };
-
-  useEffect(() => { // evita que ponga directamente /home
-    !access && navigate("/");
-  }, [access]);
+    
+       
+    useEffect(()=>{
+      !access && navigate("/")
+    },[access]);
+    
+    const login = (userData) => {
+      if (userData.password === USER_PASSWORD && userData.email === USER_EMAIL) {
+        setAccess(true);
+        navigate('/home'); // Usamos la constante navigate aquí
+      }
+    }
+    
+//  const login =(userData)=>{
+ 
+//   if(userData.password === USER_PASSWORD && userData.email === USER_EMAIL){
+//     setAccess(true);
+//     navigate ('/home')
+//   }
+//  }
 
   return (
-    <div className="App">
-      {location.pathname !== "/" ? <Nav onSearch={onSearch} /> : ""}
-      <Routes>
-        <Route
-          path="/home"
-          element={<Cards characters={characters} onClose={onClose} />}
-        />
-        <Route path="/about" element={<About />} />
-        <Route path="/detail/:id" element={<Detail />} />
-        <Route path="/" element={<Form login={login} />} />
-      </Routes>
+   <div className='App' >
+    {pathname !== "/" && (
+      <Nav onSearch = {onSearch} setAccess={setAccess} /> 
+    )} 
+    
+    <Routes>
+      <Route path='/home' element = {<Cards characters = {characters} onCardClick={handleCardClick}
+      onClose={onClose} />}/>
+      <Route path ='/About' element ={<About/>}/>
+      <Route path ='/Detail/:id' element ={<Detail character={detalles} onClose= {handleClose}/>}/>
+      <Route path='/' element={<Form login={login}/>}/>    
+      <Route path='/favorites' element={<Favorites/>}></Route>
+    </Routes>
     </div>
-  );
-}
+  )
+  } 
+  
 
 export default App;

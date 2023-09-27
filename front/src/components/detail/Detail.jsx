@@ -2,35 +2,41 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
-const Detail = () => {
 
-  const { id } = useParams();
-
-  const [character, setCharacter] = useState({});
-
-  useEffect(() => {
-    axios(`https://rickandmortyapi.com/api/character/${id}`).then(
-      ({ data }) => {
-        if (data.name) {
-          setCharacter(data);
-        } else {
-          window.alert("No hay personajes con ese ID");
-        }
+const Detail = ({character, onClose})=>{
+  if (!character) return null;
+    const params =useParams();
+    const [characters, setCharacters] = useState({});
+    useEffect(()=> {
+        axios(`https://rickandmortyapi.com/api/character/${params?.id}`)
+        .then(({ data }) => {
+          if (data.name) {
+           setCharacters(data);
+         } else {
+           alert('No hay personajes con ese ID');
       }
-    );
-    return setCharacter({});
-  }, [id]);
 
-  return (
-    <div>
-      <h3>Name: {character?.name}</h3>
-      <h3>Status: {character?.status}</h3>
-      <h3>Species: {character?.species}</h3>
-      <h3>Gender: {character?.gender}</h3>
-      <h3>Origin: {character.origin?.name}</h3>
-      <img src={character?.image} alt={character?.name} /> 
-    </div>
-  );
-};
+   })
+   .catch ((error)=> {
+    console.log('se rompio', error);
+   })
+   return setCharacters({});
+
+    },[params?.id])
+
+    return(
+        <div>
+         <h2>{characters?.name}</h2>
+          
+         {characters.image && <img  src={characters.image} alt ={characters.name} />}
+         <p>Specie: {characters?.species}</p> 
+          <p>Estado: {characters?.status }</p>   
+         <p>Origen: {characters?.origin?.name}</p>   
+         <p>Genero: {characters?.gender}</p>   
+         
+       
+        </div>
+    )
+}
 
 export default Detail;
