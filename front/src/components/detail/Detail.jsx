@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 
-const Detail = ({character, onClose})=>{
+const Detail = ({character})=>{
   if (!character) return null;
     const params =useParams();
     const [characters, setCharacters] = useState({});

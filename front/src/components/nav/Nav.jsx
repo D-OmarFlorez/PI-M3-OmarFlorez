@@ -10,7 +10,6 @@ const Nav =({onSearch} ) =>{
 
   const navigate = useNavigate();
   const Logout = ()=>{
-    // if (window.confirm('seguro que quieres cerrar sesion?')){
       console.log('logout realizado')
     navigate('/');
   }
@@ -20,7 +19,10 @@ const Nav =({onSearch} ) =>{
   const salirConfirm = ( )=> {
     setConfirm(false);
   }
- 
+  const miBoton = ()=>{
+    
+  }
+
   const estilocuadro = {
     backgroundColor: 'white',
     fontSize: '13px',
