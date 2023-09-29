@@ -20,6 +20,7 @@ const Detail = ({character})=>{
    .catch ((error)=> {
     console.log('se rompio', error);
    })
+  
    return setCharacters({});
 
     },[params?.id])
@@ -38,5 +39,6 @@ const Detail = ({character})=>{
         </div>
     )
 }
+
 
 export default Detail;

@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import React from "react"
-
+import holagif from "./videos/hola.gif"
 const VideoTrasero = styled.div`
 position: absolute;
 top: 0;
@@ -16,10 +16,10 @@ height: 110%;
 `;
 
 
-const LoginComponent = ({videoUrl})=>{
+const LoginComponent = ()=>{
     return (
         <VideoTrasero> 
-            <BackgroundImage src = {videoUrl} alt="hola"/>
+            <BackgroundImage src = {holagif} alt="hola"/>
         </VideoTrasero>
     )
 }

@@ -2,7 +2,7 @@ import { ADD_FAV, GENDER, REMOVE_FAV, ORDER } from "./Actions-type";
 const initialState ={
  
     myFavorites:[],
-    allfavorites:[]
+    allfavorites:{}
 }
 
 const Reduce = (state = initialState, action) => {
@@ -17,7 +17,7 @@ const Reduce = (state = initialState, action) => {
         case REMOVE_FAV:
             return{
               ...state,
-             myFavorites: state.myFavorites.filter(character => character.id != action.payload)
+             myFavorites: state.myFavorites.filter((character) => character.id != action.payload)
             }
 
               case GENDER:

@@ -1,0 +1,10 @@
+.cabecera{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.cuerpo{
+    margin: 2rem;
+    width: 200px;
+    height: 40%;
+}

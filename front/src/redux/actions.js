@@ -1,5 +1,6 @@
 import {ADD_FAV, REMOVE_FAV, GENDER, ORDER} from "./Actions-type"
 
+
  export const addFavorite = (character)=> {
     return {
         type : ADD_FAV,

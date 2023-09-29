@@ -33,33 +33,34 @@ const [authError, setauthError] = useState(false);
     setauthError ("contraseña o email invalidos")
   }
 }
+  const [mostrar, setMostrar] = useState(false)
+  const vista = ()=>{
+    setMostrar(!mostrar);
+  }
+
+
   const styleInput ={
-    backgroundColor: '#00ffff',
+    backgroundColor: '#2823bc',
     fontSize: '16px',
     alignContent:'center',
-    width: '90%',
-    padding: '2px',
+    width: '100%',
+    padding: '10px',
     color:'white',
+    position: "relative",
+    boxSizing:"border-box",
+    paddingleft:"30px",
     fontSize: '18px',
     border: '2px solid #ccc',
     borderRadius: '100px',
     transition: 'border-color 0.3s ease',
   }
-  const [mostrar, setMostrar] = useState(false);
-  const[contrasena, setContrasena] = useState("");
-  const cambio= (event) => {
-    setContrasena(event.target.value);
-  }
-  const clickMostrar= ()=>
- {
-  setMostrar(!mostrar);
- }
+
   return (
     <div >
 
       
       
-      <LoginComponent videoUrl="https://wallpapercave.com/dwp2x/wp3277744.jpg"/>
+      <LoginComponent/>
        
       <div style={{
         alignItems:'center',
@@ -73,10 +74,11 @@ const [authError, setauthError] = useState(false);
         paddingBottom: 'px',
         fontWeight:'bold ',
         width:"300px",
-        backgroundImage:'url(https://steamuserimages-a.akamaihd.net/ugc/782978849731816179/3C57274A35C1718A482502A104E3D6ABC4568EEA/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true)',
+        backgroundImage:'url(https://i.pinimg.com/564x/22/99/7d/22997de0e5d4d4a1f2e6591b8656a646.jpg)',
+        // https://steamuserimages-a.akamaihd.net/ugc/1770453485893246977/FA4026EBB255ACE569504E4EB81645214FDF1CE7/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true
         backgroundSize:'cover',
         backgroundPosition:'center',
-        height:"560px",        
+        height:"540px",        
         placeItems:'center'
       }}>
       <div style={{
@@ -106,7 +108,7 @@ const [authError, setauthError] = useState(false);
        
           <input style={{
             backgroundColor: "grey",
-            color: "white"
+            color: "blue"
           }}
               type="text" 
               name="email" 
@@ -115,6 +117,7 @@ const [authError, setauthError] = useState(false);
               // 'da' = 'da'
               onChange={handleChange}
           />
+    
           </div>
           {errors.email !== '' && <p style={{ color: 'red' }}>{errors.email}</p>}
 
@@ -129,25 +132,27 @@ const [authError, setauthError] = useState(false);
           <label htmlFor="password"> Password: </label>
           {/* <div> */}
           <div style={styleInput}>
-          <input  style={{
+          <input style={{
             backgroundColor:"grey",
             fontfamily:'fuente',
-            color: "white"
+            color: "blue"
           }}
-              type={mostrar? "text":"password" }
+              type={mostrar ? "text" : "password"}
               name="password"
               id = "password" 
               value={userData.password}
               onChange={handleChange}
-        ></input>
-            <FontAwesomeIcon icon={mostrar ? faEyeSlash : faEye} onClick={clickMostrar} style={{
-            cursor: 'pointer',
-            position: 'relative',
-            top:'50%',
-            transform:'translateX(-25px)',   
-          }}/>
-
+          />
           </div>
+         <i onClick={vista} style={{
+          position:"relative",
+          bottom:"35px",
+          left:'70px',
+          padding: '0px', 
+          cursor: 'pointer' 
+         }}>
+          {mostrar? <FontAwesomeIcon icon={faEyeSlash}/> : <FontAwesomeIcon icon={faEye}/>}
+         </i>
           {errors.password !== '' && <p style={{ color: 'red' }}>{errors.password}</p>}
 
           <hr style={{ 

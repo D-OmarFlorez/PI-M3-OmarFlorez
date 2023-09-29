@@ -30,6 +30,8 @@ const App = () => {
   const [characters, setCharacters] = useState([]);
   const {pathname} = useLocation();
   const onSearch = (id) => {
+   
+   if(!isNaN(id)){
     axios(`https://rickandmortyapi.com/api/character/${id}`)
     .then(({ data }) => {
       if (data.name) {
@@ -44,6 +46,23 @@ const App = () => {
     .catch((error) => {
       alert('¡No hay personajes con este ID!', error);
     });
+ }else{
+  axios(`https://rickandmortyapi.com/api/character/?name=${id}`)
+      .then(({ data }) => {
+        if (data.results) {
+          setCharacters(data.results);
+        }
+      })
+      .catch((error) => {
+        alert('¡No se encontraron personajes con este nombre!', error);
+      });
+  }
+  }
+
+
+
+const limpiarHome = () =>{
+  setCharacters([]);
 }
 const handleCardClick =(id) =>{
   axios(`https://rickandmortyapi.com/api/character/${id}`)
@@ -118,7 +137,7 @@ const handleCardClick =(id) =>{
   return (
    <div className='App' >
     {pathname !== "/" && (
-      <Nav onSearch = {onSearch} setAccess={setAccess} /> 
+      <Nav onSearch = {onSearch} setAccess={setAccess} limpiarHome={limpiarHome}  /> 
     )} 
     
     <Routes>
@@ -127,7 +146,7 @@ const handleCardClick =(id) =>{
       <Route path ='/About' element ={<About/>}/>
       <Route path ='/Detail/:id' element ={<Detail character={detalles} onClose= {handleClose}/>}/>
       <Route path='/' element={<Form login={login}/>}/>    
-      <Route path='/favorites' element={<Favorites/>}></Route>
+      <Route path='/favorites' element={<Favorites/>}/>
     </Routes>
     </div>
   )

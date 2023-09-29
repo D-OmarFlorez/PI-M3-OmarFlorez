@@ -1,0 +1,13 @@
+.estiloPrincipal{
+    display: flex;
+    justify-Content: space-between;
+    position: fixed;
+    align-items: center;
+    top:"0";
+    left:"0";
+    width:"100%";
+     background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pxfuel.com%2Fes%2Fdesktop-wallpaper-jarbu&psig=AOvVaw0PgpYjNRtVdj95fPnbSfng&ust=1696029080652000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLDJ0d22zoEDFQAAAAAdAAAAABAE');
+    background-size: cover;
+    background-repeat: no-repeat; 
+    z-Index: '100';
+  }

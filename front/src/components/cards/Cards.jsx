@@ -1,23 +1,28 @@
 import Card from "../card/Card";
-
+import "./Cards.css"
 
 const Cards = ({ characters, onClose, onCardClick}) => {
+   
    return(
       
-      <div>
+      <div className="cabecera">
         
-         {characters?.map(({id, name, image})=>{
-            return (
+         {characters?.map((character)=>{
+            console.log(character);
+            return(
+               <div className="cuerpo">
             <Card
-               key={id}
-               id ={id}
-               name ={name}
-               image = {image}
+               key={character.id}
+               id= {character.id}
+               name={character.name}
+               image={character.image}
+               character={character}
                onClose={onClose}
                onCardClick={onCardClick}
                
+               
             />
-            
+            </div>
             
             )
          }

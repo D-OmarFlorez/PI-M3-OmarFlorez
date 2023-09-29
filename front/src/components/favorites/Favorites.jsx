@@ -1,43 +1,40 @@
-import { useSelector } from "react"
-
+import { useSelector, useDispatch } from "react-redux"
 import Card from "../card/Card";
-import { filterCards } from "../../redux/actions";
+
 
 const Favorites =()=>{
-    const myFavorites = useSelector((state) => state.myFavorites);
-  
+    const favoritos = useSelector((state) => state.myFavorites);
+  const dispatch = useDispatch()
+
  const handleChange= (event)=>{
     if(event.target.name === 'filter'){
-        dispatchEvent(filterCards(event.target.value));
+        dispatch(filterCards(event.target.value));
     }else{
-        dispatchEvent(ordercards)
+        dispatch(Reduce)
     }
  }
-  
+ console.log(myFavorites)
   return(
     <div>
-          {myFavorites.map(({name, image})=>{
-
-           
+        <select type={handleChange}/>   
         return(
             <Card
              key= {id}
              id={id}
              name={name}
-             image = {image}   
-         />
-        )
-    })} 
-        <select onChange= {handleOrder}>
-             <option value ='A'>Ascendente</option>
-             <option value ='B'>Descendente</option>
+             image = {image}       
+        />
+        <select name = "id">
+             <option value ='A'/>
+             <option value ='B'/>
             </select>
-        <select onChange={handleFilter}>
-            <option value='male'>Maculino</option>
-            <option value='Female'>Femenino</option>
-            <option value='Genderless'>Genero</option>
-            <option value='unknown'>desconocido</option>
+        <select >
+            <option value='male'>male</option>
+            <option value='male'>male</option>
+            <option value='male'>male</option>
+            <option value='male'>male</option>
         </select>
+        )
 </div>
   )
 }
