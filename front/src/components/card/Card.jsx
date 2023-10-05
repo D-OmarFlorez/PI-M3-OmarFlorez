@@ -98,14 +98,7 @@ const handleClick =(event)=>{
           <p>name: {character?.name}</p>
          </div>
          <img style={{borderStyle:"outset; border-width: 5px", borderRadius:"100%", borderInlineColor:"Highlight 10px", border:"10px solid #00ffff"}} src={character.image} alt = {character.name} /> 
-         <div style={{
-            width:"20 px",
-            position:"center",       
-            backgroundColor:"rgba(0, 0, 0, 0.5)"
-            
-            
-
-         }} >
+         <div className="carta">
           <p ><b>especie: </b>{character?.species.toString()}</p>
            <p><b>Estado: </b> {character?.status.toString()}</p>
            <p><b>Origen: </b> {character?.origin.name.toString()}</p>

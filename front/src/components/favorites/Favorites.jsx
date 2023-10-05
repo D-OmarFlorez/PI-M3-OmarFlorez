@@ -1,11 +1,11 @@
 import { useSelector, useDispatch } from "react-redux"
 import Card from "../card/Card";
+import Reduce from "../../redux/Reducer";
 
-
-const Favorites =()=>{
+const Favorites =({image, id, name }, state)=>{
     const favoritos = useSelector((state) => state.myFavorites);
   const dispatch = useDispatch()
-
+  console.log(state.myFavorites);
  const handleChange= (event)=>{
     if(event.target.name === 'filter'){
         dispatch(filterCards(event.target.value));
@@ -13,7 +13,6 @@ const Favorites =()=>{
         dispatch(Reduce)
     }
  }
- console.log(myFavorites)
   return(
     <div>
         <select type={handleChange}/>   
@@ -38,5 +37,6 @@ const Favorites =()=>{
 </div>
   )
 }
+
 
 export default Favorites

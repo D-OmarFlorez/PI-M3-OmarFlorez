@@ -1,11 +1,13 @@
 import { useState } from "react";
 import validation from "../../Validation";
-import LoginComponent from "./styles/Logincomponente";
+import LoginComponent from "./styles/videos/Logincomponente";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Aleatorio from "../citas/Citas";
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import ImagenHora from "./styles/videos/imagenes/Imagenhora";
+import "./form.css"
 const USER_EMAIL = 'hola@gmail.com'
 const USER_PASSWORD = '1234asdf'
-
 
 
 const Form = ({login}) => {
@@ -56,31 +58,15 @@ const [authError, setauthError] = useState(false);
   }
 
   return (
-    <div >
-
+    
+    <div>
       
-      
-      <LoginComponent/>
-       
-      <div style={{
-        alignItems:'center',
+      <LoginComponent BackgroundImage='https://i.pinimg.com/originals/a1/97/0c/a1970c9c15a90ce9e6e55faf08c1c404.gif'/>
+    
+   
+      <div className="loginBox">
+        
 
-        border: '10px solid white',
-        borderImage:'linear-gradient(to top, lime, cyan, OrangeRed) 3',
-        borderRadius:'10%',
-        borderColor:'black',
-        backgroundColor:"green",      
-        paddingTop: '10px',
-        paddingBottom: 'px',
-        fontWeight:'bold ',
-        width:"300px",
-        backgroundImage:'url(https://i.pinimg.com/564x/22/99/7d/22997de0e5d4d4a1f2e6591b8656a646.jpg)',
-        // https://steamuserimages-a.akamaihd.net/ugc/1770453485893246977/FA4026EBB255ACE569504E4EB81645214FDF1CE7/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true
-        backgroundSize:'cover',
-        backgroundPosition:'center',
-        height:"540px",        
-        placeItems:'center'
-      }}>
       <div style={{
         border: '4px solid white',
         backgroundColor:'grey',
@@ -102,6 +88,7 @@ const [authError, setauthError] = useState(false);
 
 
       <form onSubmit={handleSubmit}>
+        <div className="user-Box">
           <label htmlFor="email">Email: </label>
           {/* <div style={{ */}
           <div style={styleInput}>
@@ -117,6 +104,7 @@ const [authError, setauthError] = useState(false);
               // 'da' = 'da'
               onChange={handleChange}
           />
+          </div>
     
           </div>
           {errors.email !== '' && <p style={{ color: 'red' }}>{errors.email}</p>}
@@ -128,7 +116,7 @@ const [authError, setauthError] = useState(false);
   backgroundImage: "linear-gradient(to right, rgba(255,0,0,0), rgba(255,0,0,1), rgba(255,0,0,0))" 
 }} />
 
-          
+         <div className="user-Box">
           <label htmlFor="password"> Password: </label>
           {/* <div> */}
           <div style={styleInput}>
@@ -144,6 +132,7 @@ const [authError, setauthError] = useState(false);
               onChange={handleChange}
           />
           </div>
+          </div> 
          <i onClick={vista} style={{
           position:"relative",
           bottom:"35px",
@@ -168,11 +157,46 @@ const [authError, setauthError] = useState(false);
           >Enviar</button>
 
           {authError && <p style={{ color: "red" }}>Correo o contraseña incorrectos</p>}
-     
+
       </form>
+      
       </div>
+      
+      <div  style={{
+        position:"relative",
+        float:"center",
+        marginButtom:"0px",
+        
+        height:"200px",
+        zIndex:""
+      
+       }}> 
+
+<ImagenHora style={{
+        width: '100%',
+        
+        height: '100%',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+
+      }}
+      images={{
+       mañana: "https://i.pinimg.com/originals/f9/e2/50/f9e250c7924296d51d6851e79cb29da4.jpg",
+       tarde:"https://i.pinimg.com/564x/8c/bd/7b/8cbd7b3a02d1582540d1399ff8abc2b6.jpg",
+       noche:"https://i.pinimg.com/474x/87/e2/68/87e2689051c7cb21cead6790bbdca480.jpg",
+       madrugada:"https://www.eluniversohoy.net/wp-content/uploads/2019/08/Jeff-Dai-Milky-way-and-Gegenschein-over-Ali-observatory_1566435082.jpg"
+      }}/> 
+       <Aleatorio style={{
+        position:"center",
+        height:"200px",
+        justifyContent:"center",
+        alignItems:"center"
+       }}/>
+       
+       </div>
       </div>
-   
+        
+     
     
   )
 }

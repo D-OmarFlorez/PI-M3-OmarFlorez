@@ -1,18 +1,20 @@
 import Card from "../card/Card";
 import "./Cards.css"
-
-const Cards = ({ characters, onClose, onCardClick}) => {
-   
+// import {randomCharacter} from '../nav/Nav'
+const Cards = ({ characters, onClose, onCardClick, randomCharacter}) => {
+   characters = Array.isArray(characters) ? characters : [];
+  
+   const allCharacters  = [randomCharacter, ...characters];
    return(
       
       <div className="cabecera">
         
-         {characters?.map((character)=>{
-            console.log(character);
+         {allCharacters?.map((character)=>{
+           if (!character) return null;
+           const key = character.id? character.id: `random-${index}`
             return(
-               <div className="cuerpo">
+               <div className="cuerpo" key={key}>
             <Card
-               key={character.id}
                id= {character.id}
                name={character.name}
                image={character.image}

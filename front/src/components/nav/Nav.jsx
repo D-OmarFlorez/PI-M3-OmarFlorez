@@ -5,9 +5,9 @@ import { Link, useNavigate } from "react-router-dom";
 import BotonEstilo from "./botones/Botones";
 import axios from "axios";
 
-const Nav =({onSearch, limpiarHome}) =>{
+const Nav =({onSearch, limpiarHome, setRandomCharacter, mostrarAbout}) =>{
   const [confirm, setConfirm] = useState(false);
-  const [randomCharacter, steRandomCharacter] = useState(null);
+  const [randomCharacter, setRandomCharacterState] = useState(null);
   const navigate = useNavigate();
   const Logout = ()=>{
       console.log('logout realizado')
@@ -26,7 +26,7 @@ const Nav =({onSearch, limpiarHome}) =>{
      axios(`https://rickandmortyapi.com/api/character/${randomId}`)
         .then(({data})=>{
           if (data.name){
-          setRandomCharacter(data)
+          setRandomCharacterState(data)
         }
         })
         .catch((error)=>{
@@ -50,32 +50,23 @@ const Nav =({onSearch, limpiarHome}) =>{
    return(
   <div className=" estiloPrincipal">
     <nav>
-      <Link to='/about'>
-        <button>about</button>
+      <Link to='/About'>
+        <button onClick={mostrarAbout}>about</button>
       </Link>
       
-      {/* <Link to='/favorites'>
+      <Link to='/Favorites'>
         <button>
           favoritos
         </button>
-      </Link> */}
+      </Link>
 
       <Link to='/home'>
         <button>
             home
         </button>
       </Link>
-      <button onClick={random}>random
-      {randomCharacter && (
-  <div>
-    <h2>{randomCharacter.name}</h2>
-    <img src={randomCharacter.image} alt={randomCharacter.name} />
-    {/* Agrega aquí el resto de la información que deseas mostrar en la carta */}
-  </div>
-)}</button>
-      <button onClick={limpiarHome}>Limpiar Todo</button>
-
-        <button onClick={logoutClick}>
+      
+      <button onClick={logoutClick}>
             logout
         </button>
         {confirm && (
@@ -86,6 +77,16 @@ const Nav =({onSearch, limpiarHome}) =>{
         <button onClick={salirConfirm}>no</button>
         </div>
         )}
+
+      <button onClick={random}>random</button>
+      {/* {randomCharacter && (
+  <div>
+    <h2>{randomCharacter.name}</h2>
+    <img src={randomCharacter.image} alt={randomCharacter.name} />
+  </div>
+)}   */}
+      <button onClick={limpiarHome}>Limpiar Todo</button>
+
       <link to = "/details">
         {/* <button>details</button> */}
       </link>

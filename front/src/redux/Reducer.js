@@ -1,19 +1,36 @@
-import { ADD_FAV, GENDER, REMOVE_FAV, ORDER } from "./Actions-type";
+import { ADD_FAV, GENDER, REMOVE_FAV, ORDER, REMOVE_CAR, ADD_CAR } from "./Actions-type";
 const initialState ={
- 
+    myCar:[],
+    allCar:{},
     myFavorites:[],
     allfavorites:{}
 }
 
 const Reduce = (state = initialState, action) => {
     switch (action.type){
+
+        case ADD_CAR:
+            return{
+            ...state,
+            myCar: [...state.myCar, action.payload],
+            allCar: [state.allCar, action.payload]
+            
+        };
+    
+        case REMOVE_CAR:
+            return{
+              ...state,
+             myCar: state.myCar.filter((character) => character.id != action.payload)
+            }
+
         case ADD_FAV:
             return{
             ...state,
             myFavorites: [...state.myFavorites, action.payload],
-            allfavorites: [...state.allfavorites, action.payload]
+            allfavorites: [state.allfavorites, action.payload]
+            
         };
-        
+    
         case REMOVE_FAV:
             return{
               ...state,

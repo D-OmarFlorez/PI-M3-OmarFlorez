@@ -1,6 +1,7 @@
 /*styles*/
 import './App.css'
 
+
 /*cmponentes de render*/
 import Cards from './components/cards/Cards.jsx';
 import Nav from './components/nav/Nav';
@@ -8,19 +9,20 @@ import About from './components/about/About';
 import Detail from './components/detail/Detail';
 import Form from './components/form/Form';
 import Favorites from './components/favorites/Favorites';
-
+import NotFound from './components/404notfound/NotFound';
+import holagif from './components/form/styles/videos/hola.gif'
+import LoginComponent from './components/form/styles/videos/Logincomponente';
 /*dependencias*/
 import axios from 'axios'
 
 /*hooks*/
 import {useState, useEffect} from 'react';
 import { useLocation, Route, Routes, useNavigate} from 'react-router-dom';
+import Aleatorio from './components/citas/Citas';
 
 /*credentials*/
 const USER_EMAIL = 'hola@gmail.com'
 const USER_PASSWORD = '1234asdf'
-
-
 
 const App = () => {
 
@@ -29,9 +31,14 @@ const App = () => {
   const navigate = useNavigate();
   const [characters, setCharacters] = useState([]);
   const {pathname} = useLocation();
+
+// const [carrito, setCarrito]= useState([]);
+// setCarrito([...carrito, characters])
+
   const onSearch = (id) => {
    
    if(!isNaN(id)){
+    // axios(`http://localhost:3001/rickandmorty/character/${id}`)
     axios(`https://rickandmortyapi.com/api/character/${id}`)
     .then(({ data }) => {
       if (data.name) {
@@ -46,8 +53,10 @@ const App = () => {
     .catch((error) => {
       alert('¡No hay personajes con este ID!', error);
     });
- }else{
-  axios(`https://rickandmortyapi.com/api/character/?name=${id}`)
+ }
+else{
+  axios(`https://rickandmortyapi.com/api/character/?name = ${id}`)
+  // axios(`http://localhost:3001/rickandmorty/character/?name=${id}`)
       .then(({ data }) => {
         if (data.results) {
           setCharacters(data.results);
@@ -66,6 +75,7 @@ const limpiarHome = () =>{
 }
 const handleCardClick =(id) =>{
   axios(`https://rickandmortyapi.com/api/character/${id}`)
+  // axios(`http://localhost:3001/rickandmorty/character/${id}`)
       .then(({ data }) => {
         setdetalles(data);
         setPersonaje(true);
@@ -77,36 +87,10 @@ const handleCardClick =(id) =>{
   const handleClose = ()=>{
     setShowDetail(false);
     setSelectedCharacter(null);
-  }
-
-  // const onSearch = (id) => {
-  //   axios(`https://rickandmortyapi.com/api/character/${id}`)
-  //     .then(({data}) => { 
-  //        if (data.name) {
-  //         if (!characters.some(character => character.id ===  data.id)){
-  //         setCharacters((oldChars) => [...oldChars, data]);
-  //         }else{
-  //           alert('este personage ya esta en la lista.');
-  //         }
-  //      }
-  //   })
-  //   .catch(() => {
-  //     alert ('!no hay personajes con este ID')
-  //   })}
+  }  
    
     const [access, setAccess]= useState(false);
-    // function login(userData){
-    //   const navigate = useNavigate();
-    //   if(userData.password === USER_PASSWORD && userData.email === USER_EMAIL){
-    //      setAccess(true)
-    //      navigate("/home")
-    //   } 
-    // }
-    // const onClose =(id) => {
-    //   const characterFilter = characters.filter ((character) =>{
-    //   character.id !== id
-    //   setCharacters(characterFilter) 
-    // })}
+   
     const onClose = (id) => {
       const characterFilter = characters.filter((character) => {
         return character.id !== id; // Filtrar personajes cuyo ID no coincida
@@ -126,31 +110,41 @@ const handleCardClick =(id) =>{
       }
     }
     
-//  const login =(userData)=>{
- 
-//   if(userData.password === USER_PASSWORD && userData.email === USER_EMAIL){
-//     setAccess(true);
-//     navigate ('/home')
-//   }
-//  }
+const [mostrarAcerca, setMostrarAcerca] = useState(false);
+const mostrarAbout = ()=>{
+  setMostrarAcerca(!mostrarAcerca);
+}
 
-  return (
+const [randomCharacter, setRandomCharacter]= useState(null); 
+
+return (
+  <div>
+   <LoginComponent BackgroundImage='https://i.pinimg.com/originals/34/ac/0e/34ac0efa00a8507bf9c231866c3bdc81.jpg' />
    <div className='App' >
-    {pathname !== "/" && (
-      <Nav onSearch = {onSearch} setAccess={setAccess} limpiarHome={limpiarHome}  /> 
+
+    {pathname === "/" || pathname !=='*' &&(
+    // {/* {pathname === '/home' || pathname === '/Detail'|| pathname==='Favorites' || pathname === 'About' || ( */}
+      <Nav onSearch = {onSearch} setAccess={setAccess} limpiarHome={limpiarHome} setRandomCharacter={setRandomCharacter} /> 
     )} 
     
     <Routes>
+
       <Route path='/home' element = {<Cards characters = {characters} onCardClick={handleCardClick}
       onClose={onClose} />}/>
       <Route path ='/About' element ={<About/>}/>
       <Route path ='/Detail/:id' element ={<Detail character={detalles} onClose= {handleClose}/>}/>
       <Route path='/' element={<Form login={login}/>}/>    
-      <Route path='/favorites' element={<Favorites/>}/>
+      <Route path='/Favorites' element={<Favorites/>}/>
+      <Route path='*' Component={NotFound}/>
+  
     </Routes>
-    </div>
+    <Cards character={characters} randomCharacter={randomCharacter}/>
+
+      </div>
+      </div>
+      
   )
   } 
   
-
+console.log(NotFound);
 export default App;

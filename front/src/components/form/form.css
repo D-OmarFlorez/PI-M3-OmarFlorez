@@ -1,0 +1,23 @@
+.loginBox {
+    float: right;
+    align-items: center;
+    font-family: ""; /* Debes especificar una fuente aquí */
+    border: 10px solid white;
+    border-image: linear-gradient(to top, lime, cyan, OrangeRed) 3;
+    border-radius: 20%;
+    border-color: black;
+    padding-right: 10px;
+    font-weight: bold;
+    width: 300px;
+    background-image: url(https://i.pinimg.com/564x/22/99/7d/22997de0e5d4d4a1f2e6591b8656a646.jpg);
+    /* https://steamuserimages-a.akamaihd.net/ugc/1770453485893246977/FA4026EBB255ACE569504E4EB81645214FDF1CE7/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true */
+    background-size: cover;
+    background-position: center;
+    height: auto;
+    place-items: left;
+    z-index: 1;
+}
+
+       
+      
+}
