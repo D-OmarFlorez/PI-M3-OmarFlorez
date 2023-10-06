@@ -1,25 +1,32 @@
  const axios = require ("axios")
- const express =require ("express")
-const app =express();
+//  const express =require ("express")
+// const app =express();
 
 
-    app.use(express.json())
+    // app.use(express.json())
 
-    const getCharById =(response, query)=>{  
+    const getCharById =(response, id)=>{  
    
-
-    if(!NaN(query)){
-    axios(`https://rickandmortyapi.com/api/character/${query}`)
+       
+    if(!isNaN(id)){
+       
+    axios(`https://rickandmortyapi.com/api/character/${id}`)
     .then(({data})=>{
-            const character = {
-                id: query,
-                name: data.name,
-                gender: data.gender, 
-                species: data.species,
-                origin: data.origin, 
-                image: data.image, 
-                status: data.status
+        
+        
+            const characters = {
+                id: id,
+                name: data?.name,
+                gender: data?.gender, 
+                type: data?.type,
+                location:data?.location,
+                created:data?.created,
+                species: data?.species,
+                origin: data?.origin, 
+                image: data?.image, 
+                status: data?.status
             } 
+            const character=characters
            return response
             .writeHead(200,{"Content-Type":"application.json"})
             .end(JSON.stringify(character))
@@ -32,18 +39,30 @@ const app =express();
            .end(error.message)
         })
     }else{
-        axios(`https://rickandmortyapi.com/api/character/?name= ${query}`)
+        
+        axios(`https://rickandmortyapi.com/api/character/?name=${id}`)
         .then(({data})=>{
+            
+
             if(data.results && data.results.length > 0){
-                const character = {
-                    id: data.results[0].id,
-                    name: data.results[0].name,
-                    gender: data.results[0].gender, 
-                    species: data.results[0].species,
-                    origin: data.results[0].origin, 
-                    image: data.results[0].image, 
-                    status: data.results[0].status
-                } 
+              
+                const personaje=  data.results[0]
+              const character={
+                                    
+              
+                    id: personaje?.name,
+                    name: personaje?.name,
+                    gender: personaje?.gender, 
+                    species: personaje?.species,
+                    type:personaje?.type,
+                    origin: personaje.origin?.name,
+                    location: personaje.location?.name,
+                    created: personaje?.created, 
+                    image: personaje?.image, 
+                    status: personaje?.status
+            
+        } 
+            
                return response
                 .writeHead(200,{"Content-Type":"application.json"})
                 .end(JSON.stringify(character))
