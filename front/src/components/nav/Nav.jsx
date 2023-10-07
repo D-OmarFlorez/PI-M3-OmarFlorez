@@ -4,6 +4,7 @@ import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import BotonEstilo from "./botones/Botones";
 import axios from "axios";
+import Cards from "../cards/Cards";
 
 const Nav =({onSearch, limpiarHome, setRandomCharacter, mostrarAbout}) =>{
   const [confirm, setConfirm] = useState(false);
@@ -79,6 +80,8 @@ const Nav =({onSearch, limpiarHome, setRandomCharacter, mostrarAbout}) =>{
         )}
 
       <button onClick={random}>random</button>
+          {randomCharacter&&(<Cards/>     
+          )}
       {/* {randomCharacter && (
   <div>
     <h2>{randomCharacter.name}</h2>

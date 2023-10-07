@@ -36,7 +36,7 @@ const App = () => {
 // setCarrito([...carrito, characters])
 
   const onSearch = (id) => {
-   
+ 
    if(!isNaN(id)){
     // axios(`http://localhost:3001/rickandmorty/character/${id}`)
     axios(`https://rickandmortyapi.com/api/character/${id}`)
@@ -45,6 +45,10 @@ const App = () => {
     
         if (!characters.some(character => character.id === data.id)) {
           setCharacters((oldChars) => [...oldChars, data]);
+        
+        }else if(data.results){
+          setCharacters(data.results)
+        
         } else {
           alert('Este personaje ya está en la lista.');
         }
@@ -56,7 +60,7 @@ const App = () => {
  }
 else{
   axios(`https://rickandmortyapi.com/api/character/?name = ${id}`)
-  // axios(`http://localhost:3001/rickandmorty/character/?name=${id}`)
+//   axios(`http://localhost:3001/rickandmorty/character/?name=${id}`)
       .then(({ data }) => {
         if (data.results) {
           setCharacters(data.results);
@@ -74,8 +78,8 @@ const limpiarHome = () =>{
   setCharacters([]);
 }
 const handleCardClick =(id) =>{
-  axios(`https://rickandmortyapi.com/api/character/${id}`)
-  // axios(`http://localhost:3001/rickandmorty/character/${id}`)
+  // axios(`https://rickandmortyapi.com/api/character/${id}`)
+  axios(`http://localhost:3001/rickandmorty/character/${id}`)
       .then(({ data }) => {
         setdetalles(data);
         setPersonaje(true);
@@ -119,7 +123,8 @@ const [randomCharacter, setRandomCharacter]= useState(null);
 
 return (
   <div>
-   <LoginComponent BackgroundImage='https://i.pinimg.com/originals/34/ac/0e/34ac0efa00a8507bf9c231866c3bdc81.jpg' />
+   {/* <LoginComponent BackgroundImage='https://i.pinimg.com/originals/34/ac/0e/34ac0efa00a8507bf9c231866c3bdc81.jpg' /> */}
+   <LoginComponent BackgroundImage={holagif}/>
    <div className='App' >
 
     {pathname === "/" || pathname !=='*' &&(
@@ -138,7 +143,7 @@ return (
       <Route path='*' Component={NotFound}/>
   
     </Routes>
-    <Cards character={characters} randomCharacter={randomCharacter}/>
+    
 
       </div>
       </div>

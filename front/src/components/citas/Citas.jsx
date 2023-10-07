@@ -1,6 +1,171 @@
 import React from "react"
 import Cita from "./citas.css"
 const Citas = [  
+  {
+    cita: "La vida es una obra teatral que no importa cuánto haya durado, sino lo bien que haya sido representada.",
+    autor: "Séneca",
+    palabrasClave: ["vida", "obra teatral", "representación"]
+  },
+  {
+    cita: "Elige un trabajo que ames, y no tendrás que trabajar un solo día de tu vida.",
+    autor: "Confucio",
+    palabrasClave: ["trabajo", "amor", "no trabajar"]
+  },
+  {
+    cita: "Nuestra mayor gloria no es no caer nunca, sino levantarnos cada vez que caemos.",
+    autor: "Confucio",
+    palabrasClave: ["gloria", "caer", "levantarse"]
+  },
+  {
+    cita: "No hagas a los otros lo que no te gustaría que te hicieran a ti.",
+    autor: "Confucio",
+    palabrasClave: ["otros", "no hacer", "gustar"]
+  },
+  {
+    cita: "Si das pescado a un hombre hambriento lo nutrirás durante una jornada. Si le enseñas a pescar, le nutrirás toda su vida.",
+    autor: "Lao-Tsé",
+    palabrasClave: ["pescado", "hombre hambriento", "enseñar a pescar"]
+  },
+  {
+    cita: "La victoria más difícil es la victoria sobre uno mismo.",
+    autor: "Aristóteles",
+    palabrasClave: ["victoria", "uno mismo"]
+  },
+  {
+    cita: "Es sencillo hacer que las cosas sean complicadas, pero es difícil hacer que sean sencillas.",
+    autor: "Friedrich Nietzsche",
+    palabrasClave: ["sencillez", "complicación"]
+  },
+  {
+    cita: "La peor lucha es la que no se hace.",
+    autor: "Karl Marx",
+    palabrasClave: ["peor lucha"]
+  },
+  {
+    cita: "La felicidad no brota de la razón, sino de la imaginación.",
+    autor: "Immanuel Kant",
+    palabrasClave: ["felicidad", "razón", "imaginación"]
+  },
+  {
+    cita: "La experiencia no es lo que te ocurre, es lo que haces con lo que te ocurre.",
+    autor: "Aldous Huxley",
+    palabrasClave: ["experiencia", "ocurrir", "hacer"]
+  },
+  {
+    cita: "Construimos demasiados muros y no suficientes puentes.",
+    autor: "Isaac Newton",
+    palabrasClave: ["muros", "puentes", "construcción"]
+  },
+  {
+    cita: "Estar preparado es importante, saber esperar lo es aún más, pero aprovechar el momento adecuado es la clave de la vida.",
+    autor: "Arthur Schnitzler",
+    palabrasClave: ["preparación", "espera", "oportunidad"]
+  },
+  {
+    cita: "No hay noche, por larga que sea, que no encuentre el día.",
+    autor: "William Shakespeare",
+    palabrasClave: ["noche", "día", "encuentro"]
+  },
+  {
+    cita: "La mejor manera de librarse de la tentación es caer en ella.",
+    autor: "Oscar Wilde",
+    palabrasClave: ["tentación", "caer", "liberación"]
+  },
+  {
+    cita: "La vida es una película que vuelve a empezar cada mañana al despertarnos. Olvídate de tus errores, cada día tienes una nueva oportunidad para triunfar y alcanzar la felicidad.",
+    autor: "Norkin Gilbert",
+    palabrasClave: ["vida", "película", "oportunidad"]
+  },
+  {
+    cita: "En la vida hay algo peor que el fracaso: el no haber intentado nada.",
+    autor: "Franklin D. Roosevelt",
+    palabrasClave: ["fracaso", "intentar", "nada"]
+  },
+  {
+    cita: "Si tú crees que puedes, puedes. Si tú crees que no puedes, no puedes. Tanto si piensas una cosa como la otra, estás en lo cierto.",
+    autor: "Henry Ford",
+    palabrasClave: ["creer", "poder", "certeza"]
+  },
+  {
+    cita: "Cuando escuches una voz interior que te dice que no puedes pintar, pinta tanto como puedas y verás cómo se callará.",
+    autor: "Vincent Van Gogh",
+    palabrasClave: ["voz interior", "pintar", "callar"]
+  },
+  {
+    cita: "Según algunas reveladoras pruebas de técnica aeronáutica, el abejorro no puede volar debido a la forma y el peso de su cuerpo en relación a la superficie de sus alas. Pero el abejorro no lo sabe y por eso continúa volando.",
+    autor: "Igor Sikorski",
+    palabrasClave: ["abejorro", "volar", "técnica aeronáutica"]
+  },
+  {
+    cita: "El secreto de la existencia humana no solo está en vivir, sino también en saber para qué se vive.",
+    autor: "Fiódor Dostoioevski",
+    palabrasClave: ["existencia", "vivir", "saber"]
+  },
+  {
+    cita: "Si la oportunidad no llama, construye una puerta.",
+    autor: "Milton Berle",
+    palabrasClave: ["oportunidad", "llamar", "construir"]
+  },
+  {
+    cita: "La suerte favorece sólo a la mente preparada.",
+    autor: "Isaac Asimov",
+    palabrasClave: ["suerte", "mente preparada"]
+  },
+  {
+    cita: "Sólo le falta el tiempo a quien no sabe aprovecharlo.",
+    autor: "Gaspar Melchor de Jovellanos",
+    palabrasClave: ["tiempo", "aprovechar"]
+  },
+  {
+    cita: "Un día sin risa es un día perdido.",
+    autor: "Charles Chaplin",
+    palabrasClave: ["risa", "día perdido"]
+  },
+  {
+    cita: "Muchas personas no gozan de las pequeñas alegrías, porque esperan la gran felicidad.",
+    autor: "Pearl S. Buck",
+    palabrasClave: ["alegrías", "felicidad", "esperar"]
+  },
+  {
+    cita: "Aprendí que no se puede dar marcha atrás, que la esencia de la vida es ir hacia adelante.",
+    autor: "Agatha Christie",
+    palabrasClave: ["marcha atrás", "esencia de la vida", "ir hacia adelante"]
+  },
+  {
+    cita: "El mundo pertenece a los optimistas; los pesimistas son meros espectadores.",
+    autor: "Dwight D. Eisenhower",
+    palabrasClave: ["mundo", "optimistas", "pesimistas"]
+  },
+  {
+    cita: "La creatividad requiere el coraje de dejar ir las certezas.",
+    autor: "Erich Fromm",
+    palabrasClave: ["creatividad", "coraje", "dejar ir"]
+  },
+  {
+    cita: "La vida es lo que ocurre mientras estas ocupado haciendo otros planes.",
+    autor: "John Lennon",
+    palabrasClave: ["vida", "ocurrir", "otros planes"]
+  },
+  {
+    cita: "La inteligencia es la habilidad de adaptarse al cambio.",
+    autor: "Stephen Hawking",
+    palabrasClave: ["inteligencia", "adaptarse", "cambio"]
+  },
+  {
+    cita: "La inteligencia sin ambición es un pájaro sin alas.",
+    autor: "Salvador Dalí",
+    palabrasClave: ["inteligencia", "ambición", "pájaro sin alas"]
+  },
+  {
+    cita: "Aquellos que no quieren imitar nada no producirán nada.",
+    autor: "Salvador Dalí",
+    palabrasClave: ["imitar", "producción"]
+  },
+  {
+    cita: "Tu actitud, no tu aptitud, determinará tu altitud.",
+    autor: "Zig Ziglar",
+    palabrasClave: ["actitud", "aptitud", "altitud"]
+  },  
     {
       cita: "Todos los cambios, aun los más ansiados, llevan consigo cierta melancolía.",
       autor: "Anatole France",

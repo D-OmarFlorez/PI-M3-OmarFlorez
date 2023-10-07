@@ -15,14 +15,17 @@ const Favorites =({image, id, name }, state)=>{
  }
   return(
     <div>
-        <select type={handleChange}/>   
-        return(
-            <Card
-             key= {id}
-             id={id}
-             name={name}
-             image = {image}       
+
+        <Card
+            key= {id}
+            id={id}
+            name={name}
+            image = {image}       
         />
+
+        <select type={handleChange}/>
+        
+            
         <select name = "id">
              <option value ='A'/>
              <option value ='B'/>
@@ -33,7 +36,7 @@ const Favorites =({image, id, name }, state)=>{
             <option value='male'>male</option>
             <option value='male'>male</option>
         </select>
-        )
+        
 </div>
   )
 }

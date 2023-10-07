@@ -5,6 +5,7 @@ import { addFavorite, removeFavorite } from "../../redux/actions";
 import Detail from "../detail/Detail";
 import "./Card.css"
 
+
 const Card =({ onClose, character, onCardClick}  ) => {
 console.log(character)
 
@@ -18,7 +19,7 @@ const handleOverlayClick = ()=>{
    setDetalles(!detalles);
 }
 
-const myFavorites = useSelector((state) => state.myfavorites)
+const myFavorites = useSelector((state) => state.myFavorites)
    const [isFav, setIsFav] = useState (false);
   const handleFavorite = () => {
    if(isFav){
@@ -47,14 +48,18 @@ const handleClick =(event)=>{
          }
       });
    }, [myFavorites])
+   
+   
   
    return (
       
-      <div style={{
+      
+      <div  style={{
          backgroundColor: "white",
          width: "110%",
-         borderLeft: "15px #00ffff", // Borde izquierdo
-         borderRight: "15px #00ffff", // Borde derecho
+         border: "15px solid transparent" , // Borde izquierdo
+         borderImageSource: "linear-gradient(90de, transparent, #00ffff)",
+         borderImageSlice:"1",
          borderTop: "5px solid #00ffff", // Borde superior
          borderBottom: "10px solid deep black",
          padding:"5px"
@@ -82,7 +87,7 @@ const handleClick =(event)=>{
          <div onClick={handleCardClick}> 
 
          <h2>{character?.name}</h2>
-         <img className="cartaJpg" src={character.image} alt = {character.name} /> 
+         <img className="cartaJpg" src={character?.image} alt = {character?.name} /> 
          </div>
          <hr style={{ 
    border: "none", 
@@ -111,10 +116,19 @@ const handleClick =(event)=>{
            
                
                )}
+                  {/* <a href="#">
+         <span></span>
+         <span></span>
+         <span></span>
+         <span></span>
+      </a> */}
       </div>
+   
       </div>
+     
+  
       </div>
    );
 }
-console.log();
+
 export default Card;

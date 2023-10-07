@@ -4,7 +4,7 @@ import React from "react"
 const VideoTrasero = styled.div`
 position: fixed;
 backgroundposition: center top;
-backgroundsize: cover;
+backgroundsize: container;
 backgroundrepeat: no repeat;
 backgroundattachment: fixed;
  top: 0;

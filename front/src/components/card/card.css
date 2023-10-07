@@ -1,8 +1,8 @@
 .card:hover{
-    box-shadow: 0 0 10px #00ffff;
+    box-shadow: 0 15 35px #00ffff;
    }
 .card{
-    
+    font-family: "fuente", Arial, Helvetica, sans-serif;
     background: radial-gradient(center, red, yellow) ;
 
 }
@@ -41,3 +41,44 @@
     background-size: cover;
     border-radius: 20px;
 }
+.contenedore {
+    position: relative;
+    width: 110%; /* Ajusta el ancho según tus necesidades */
+    height: 340px;
+    background-color: white;
+    border-top: 5px solid #03e9f4;
+    border-right: 15px solid #03e9f4;
+    border-bottom: 10px solid deep black;
+    padding: 5px;
+    animation: moveLine 4s linear infinite; /* Ajusta la altura según tus necesidades */
+    border: 2px solid transparent; /* Borde transparente */
+    overflow: hidden;
+  }
+  @keyframes moveLine {
+    0% {
+      background: linear-gradient(90deg, transparent, #00ffff) 0 0;
+    }
+    100% {
+      background: linear-gradient(90deg, transparent, #00ffff) 100% 0;
+    }
+  }
+  
+  
+  /* Define la animación */
+  @keyframes borderAnimation {
+    0% {
+      border-image-source: linear-gradient(90deg, transparent, #03e9f4);
+    }
+    100% {
+      border-image-source: linear-gradient(90deg, transparent, #03e9f4);
+      background-position: 100% 0;
+    }
+  }
+  
+  /* Aplica la animación al borde de la tarjeta */
+  .contenedor {
+    animation: borderAnimation 4s linear infinite; /* Ajusta la duración según tus necesidades */
+    border-image-slice: 1;
+    border-image-repeat: round;
+    border-image-width: 2px; /* Grosor de la línea */
+  }

@@ -117,7 +117,10 @@ const About = () => {
       </nav>
     </div>
   </div>
+
   </div>
+  
+  
   );
 };
 

@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import validation from "../../Validation";
 import LoginComponent from "./styles/videos/Logincomponente";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Aleatorio from "../citas/Citas";
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import ReactPlayer from 'react-player'
 import ImagenHora from "./styles/videos/imagenes/Imagenhora";
 import "./form.css"
 const USER_EMAIL = 'hola@gmail.com'
@@ -11,6 +12,18 @@ const USER_PASSWORD = '1234asdf'
 
 
 const Form = ({login}) => {
+  const [actualizarAleatorio, setActualizarAleatorio] = useState(true);
+  const handleActualizarAleatorio = () => {
+     setActualizarAleatorio(false);
+     setTimeout(()=>{
+      setActualizarAleatorio(true);
+     }, 10)
+  };
+
+
+
+  
+
   const [userData, setUserData] = useState({
     email: "", //llamar igual al name del input asi funciona el handleChange en []
     password: "",
@@ -23,9 +36,20 @@ const Form = ({login}) => {
       ...userData, //copio mi estado actual
       [event.target.name]: event.target.value //igualo el estado name a mi input para controlar lo que el usuario escribe
     }); // [] no conozco el nombre exacto de la propiedad del objeto (email o password)
-
-    setErrors(validation(userData));
   };
+    // const validationTimeout = setTimeout(()=>{
+    //   const validationErrors = validation(userData);
+    //   setErrors(validationErrors)
+
+    //   if(Object.keys(validationErrors).length===0){
+    //     setUserData({
+    //       email: userData.email,
+    //       password: userData.password,
+    //     });
+    //     clearTimeout(validationTimeout);
+    //   }
+    // }, );
+  
 const [authError, setauthError] = useState(false);
   const handleSubmit = (event) =>{
     event.preventDefault()
@@ -35,9 +59,13 @@ const [authError, setauthError] = useState(false);
     setauthError ("contraseña o email invalidos")
   }
 }
+// useEffect=()=>{
+
+// }
   const [mostrar, setMostrar] = useState(false)
   const vista = ()=>{
-    setMostrar(!mostrar);
+    setMostrar(!mostrar)
+    
   }
 
 
@@ -45,7 +73,7 @@ const [authError, setauthError] = useState(false);
     backgroundColor: '#2823bc',
     fontSize: '16px',
     alignContent:'center',
-    width: '100%',
+    width: '90%',
     padding: '10px',
     color:'white',
     position: "relative",
@@ -56,7 +84,7 @@ const [authError, setauthError] = useState(false);
     borderRadius: '100px',
     transition: 'border-color 0.3s ease',
   }
-
+  
   return (
     
     <div>
@@ -65,15 +93,10 @@ const [authError, setauthError] = useState(false);
     
    
       <div className="loginBox">
+      <form onSubmit={handleSubmit}>
         
-
-      <div style={{
-        border: '4px solid white',
-        backgroundColor:'grey',
-        fontFamily:"monospace",     
-        color:"indigo"
-      }}>logueate aqui😁👍
-      </div>
+      <h2>logueate aqui</h2>
+      
     <img src="https://www.vhv.rs/dpng/f/421-4212939_rick-and-morty-portal-png.png" alt="avatar" style={{
   width: '50%',
   heigth:'50%',
@@ -87,16 +110,12 @@ const [authError, setauthError] = useState(false);
 }} />
 
 
-      <form onSubmit={handleSubmit}>
+      
         <div className="user-Box">
-          <label htmlFor="email">Email: </label>
-          {/* <div style={{ */}
-          <div style={styleInput}>
-       
-          <input style={{
-            backgroundColor: "grey",
-            color: "blue"
-          }}
+        <label htmlFor="email">Email: </label>
+         
+       <div style={styleInput}>
+          <input 
               type="text" 
               name="email" 
               id= "email"
@@ -120,11 +139,7 @@ const [authError, setauthError] = useState(false);
           <label htmlFor="password"> Password: </label>
           {/* <div> */}
           <div style={styleInput}>
-          <input style={{
-            backgroundColor:"grey",
-            fontfamily:'fuente',
-            color: "blue"
-          }}
+          <input 
               type={mostrar ? "text" : "password"}
               name="password"
               id = "password" 
@@ -133,6 +148,13 @@ const [authError, setauthError] = useState(false);
           />
           </div>
           </div> 
+          <a href="#">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            iniciar
+          </a>
          <i onClick={vista} style={{
           position:"relative",
           bottom:"35px",
@@ -171,7 +193,14 @@ const [authError, setauthError] = useState(false);
         zIndex:""
       
        }}> 
-
+<button style={{
+        color:"black",
+        float:"left",
+        position:"absolute",
+        float:"left"
+       }} 
+       
+       onClick={handleActualizarAleatorio}>nueva cita</button>
 <ImagenHora style={{
         width: '100%',
         
@@ -186,12 +215,15 @@ const [authError, setauthError] = useState(false);
        noche:"https://i.pinimg.com/474x/87/e2/68/87e2689051c7cb21cead6790bbdca480.jpg",
        madrugada:"https://www.eluniversohoy.net/wp-content/uploads/2019/08/Jeff-Dai-Milky-way-and-Gegenschein-over-Ali-observatory_1566435082.jpg"
       }}/> 
-       <Aleatorio style={{
+       
+       {actualizarAleatorio && <Aleatorio style={{
         position:"center",
         height:"200px",
         justifyContent:"center",
         alignItems:"center"
-       }}/>
+       }}>
+       
+       </Aleatorio>}
        
        </div>
       </div>
@@ -199,6 +231,7 @@ const [authError, setauthError] = useState(false);
      
     
   )
-}
+      }
+
 
 export default Form;

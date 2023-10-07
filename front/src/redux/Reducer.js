@@ -27,7 +27,7 @@ const Reduce = (state = initialState, action) => {
             return{
             ...state,
             myFavorites: [...state.myFavorites, action.payload],
-            allfavorites: [state.allfavorites, action.payload]
+            allfavorites: [...state.allfavorites, action.payload]
             
         };
     

@@ -4,11 +4,22 @@
     text-align: start;
     width: 300px;
     background-color: aliceblue;
-    opacity: 50%;
     padding: 10px;
+    opacity: 60%;
     /* border: 2px solid #ffffff; */
     border-radius: 50px; 
+    animation: fade-in-out 10s infinite ;
+    transform: translate(0,0);
+    transition: transform 0.5s ease-in-out;
     
+  }
+  @keyframes fade-in-out{
+    from{opacity:30%}
+    50%{opacity:70%}
+    to{opacity:30%}
+  }
+  cita:hover{
+    opacity: 1;
   }
   
   .Cita p {
@@ -19,4 +30,7 @@
   
   .Cita p:last-child {
     margin-top: 20px;
+  }
+  .Cita.cambiar{
+    transform: translate(-300px, -300px);
   }

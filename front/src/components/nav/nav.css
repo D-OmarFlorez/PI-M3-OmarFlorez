@@ -2,7 +2,8 @@
     display: flex;
     justify-Content: space-between;
     position: fixed;
-    align-items: center;
+    float: left;
+    align-items: flex-start;
     top:"0";
     left:"0";
     width:"100%";
