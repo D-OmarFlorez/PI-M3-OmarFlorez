@@ -2,13 +2,10 @@ import {Link} from "react-router-dom";
 import {useEffect, useState } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import { addFavorite, removeFavorite } from "../../redux/actions";
-import Detail from "../detail/Detail";
 import "./Card.css"
 
 
 const Card =({ onClose, character, onCardClick}  ) => {
-console.log(character)
-
    const dispatch = useDispatch();
 const[detalles, setDetalles] = useState(false);
 
@@ -19,7 +16,7 @@ const handleOverlayClick = ()=>{
    setDetalles(!detalles);
 }
 
-const myFavorites = useSelector((state) => state.myFavorites)
+const myFavorite = useSelector((state) => state.myFavorites)
    const [isFav, setIsFav] = useState (false);
   const handleFavorite = () => {
    if(isFav){
@@ -42,12 +39,12 @@ const handleClick =(event)=>{
    onCardClick(character.id)
 }
    useEffect(()=>{
-      myFavorites?.forEach(fav => {
+      myFavorite?.forEach(fav => {
          if(fav.id === character.id) {
             setIsFav(true)
          }
       });
-   }, [myFavorites])
+   }, [myFavorite])
    
    
   
@@ -75,7 +72,7 @@ const handleClick =(event)=>{
       <button onClick={handleFavorite}>🤍</button>
    )
 }
-          <button onClick={() => {onClose(character.id)}}>X</button>
+          <button onClick={() => {onClose(character.id)}}>❌</button>
           <hr  style={{ 
   borderStyle: "none", 
   height: "1px", 
@@ -97,7 +94,7 @@ const handleClick =(event)=>{
    backgroundImage: "radial-gradient(circle, neongreen, yellow), "
 }} />
          {detalles &&(
-            <div onClick={handleOverlayClick} style={{ position: 'fixed', top: '50%', left: '50%', right: 0,width:'40%', height:'90%', bottom: 0, backgroundColor: 'rgba(0,0,0,0.5)', transform:"translate(-50%, -50%)", overflow:"auto", border:" 4px solid black"}}>
+            <div  onClick={handleOverlayClick} style={{ position: 'fixed', top: '50%', left: '50%', right: 0,width:'40%', height:'91%', bottom: 0, backgroundColor: 'rgba(0,0,0,0.5)', transform:"translate(-50%, -50%)", overflow:"auto", border:" 4px solid black"}}>
         <div className="background">
          <div className="nombredetalle">
           <p>name: {character?.name}</p>

@@ -24,6 +24,7 @@
     box-shadow: 0 15px 45px rgba(0, 0, 0, 6);
     
 }
+
 .loginBox h2{
     margin: 0 0 30px;
     font-family: "fuente";
@@ -102,6 +103,53 @@ letter-spacing: 4px;
     transparent, #03e9f4);
     animation: btn-anim1 1s linear infinite;
 
+}
+.overlay{
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color:  rgba(0, 0, 0, 0.7);
+pointer-events: painted;
+transition: opacity 0.5s ease ease-in-out;
+z-index: 9999;
+}
+.overlay-visible{
+    opacity: 1;
+    pointer-events: auto;
+}
+.gif-container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10000;
+    pointer-events: none;
+}
+.gif{
+    width: 500px;
+    height:500px;
+
+}
+.gif-enter{
+    opacity: 0;
+    transform:scale(0.8);
+    transition: opacity 0,5s ease, transform 0,5s ease;
+}
+.gif-enter-active{
+    opacity:1;
+    transform: scale(1); 
+}
+.gif-exit{
+    opacity: 1;
+    transform: scale(1);
+    transition: opacity 0,5s ease, transform 0,5s ease;
+
+}
+.gif-exit-active{
+    opacity: 0;
+    transform: scale(0.8);
 }
 @keyframes btn-anim1 {
     0%{

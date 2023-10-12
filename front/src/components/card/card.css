@@ -6,6 +6,11 @@
     background: radial-gradient(center, red, yellow) ;
 
 }
+.carta{
+  color: hsl(309, 26%, 95%) ;
+  background-color: rgb(0, 0, 0, 0.8);
+  font-size:medium;
+}
 .cartaJpg{
     width: 200px;
     height: auto;

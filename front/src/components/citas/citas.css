@@ -8,15 +8,15 @@
     opacity: 60%;
     /* border: 2px solid #ffffff; */
     border-radius: 50px; 
-    animation: fade-in-out 10s infinite ;
+    animation: fade-in-out 6s infinite ;
     transform: translate(0,0);
     transition: transform 0.5s ease-in-out;
     
   }
   @keyframes fade-in-out{
-    from{opacity:30%}
-    50%{opacity:70%}
-    to{opacity:30%}
+    from{opacity:40%}
+    50%{opacity:80%}
+    to{opacity:40%}
   }
   cita:hover{
     opacity: 1;

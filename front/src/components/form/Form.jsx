@@ -4,14 +4,23 @@ import LoginComponent from "./styles/videos/Logincomponente";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Aleatorio from "../citas/Citas";
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
-import ReactPlayer from 'react-player'
 import ImagenHora from "./styles/videos/imagenes/Imagenhora";
 import "./form.css"
+import supernova from "./styles/videos/supernova.gif"
+import Avatar from "./styles/avatars/Avatars";
+
+import {useNavigate, useLocation} from 'react-router-dom'
+import { CSSTransition } from "react-transition-group";
 const USER_EMAIL = 'hola@gmail.com'
 const USER_PASSWORD = '1234asdf'
 
 
 const Form = ({login}) => {
+const {pathname} = useLocation()
+  const navigate = useNavigate()
+  const[isHome, setIsHome]= useState(
+    pathname === "/home"
+  )
   const [actualizarAleatorio, setActualizarAleatorio] = useState(true);
   const handleActualizarAleatorio = () => {
      setActualizarAleatorio(false);
@@ -67,7 +76,9 @@ const [authError, setauthError] = useState(false);
     setMostrar(!mostrar)
     
   }
-
+  useEffect(()=>{
+    setIsHome(pathname === "/home");
+  }, [pathname]);
 
   const styleInput ={
     backgroundColor: '#2823bc',
@@ -89,20 +100,24 @@ const [authError, setauthError] = useState(false);
     
     <div>
       
-      <LoginComponent BackgroundImage='https://i.pinimg.com/originals/a1/97/0c/a1970c9c15a90ce9e6e55faf08c1c404.gif'/>
-    
+      <LoginComponent BackgroundImage='https://i.pinimg.com/originals/a1/97/0c/a1970c9c15a90ce9e6e55faf08c1c404.gif'>
+        <div
+        className={`overlay ${isHome? "ovelay-visible" : ""}`}>
+        </div>
+        </LoginComponent>      
    
       <div className="loginBox">
       <form onSubmit={handleSubmit}>
         
       <h2>logueate aqui</h2>
       
-    <img src="https://www.vhv.rs/dpng/f/421-4212939_rick-and-morty-portal-png.png" alt="avatar" style={{
+    {/* <img src="https://www.vhv.rs/dpng/f/421-4212939_rick-and-morty-portal-png.png" alt="avatar" style={{
   width: '50%',
   heigth:'50%',
   borderRadius: '100%'
-}}></img>
-        
+}}></img> */}
+       <Avatar/> 
+
 <hr style={{ 
   borderStyle: "none", 
   height: "2px", 
@@ -193,6 +208,8 @@ const [authError, setauthError] = useState(false);
         zIndex:""
       
        }}> 
+        <p><b><i>imagen que cambia en funcion de la hora</i></b></p>
+
 <button style={{
         color:"black",
         float:"left",
@@ -211,8 +228,8 @@ const [authError, setauthError] = useState(false);
       }}
       images={{
        mañana: "https://i.pinimg.com/originals/f9/e2/50/f9e250c7924296d51d6851e79cb29da4.jpg",
-       tarde:"https://i.pinimg.com/564x/8c/bd/7b/8cbd7b3a02d1582540d1399ff8abc2b6.jpg",
-       noche:"https://i.pinimg.com/474x/87/e2/68/87e2689051c7cb21cead6790bbdca480.jpg",
+       tarde:"https://i.pinimg.com/originals/9a/82/07/9a8207c4104147b540b4f3ff3ca11e7a.gif",
+       noche:"https://i.pinimg.com/originals/1f/2e/c0/1f2ec0b7ead7fb98ac82bbd43f671693.gif",
        madrugada:"https://www.eluniversohoy.net/wp-content/uploads/2019/08/Jeff-Dai-Milky-way-and-Gegenschein-over-Ali-observatory_1566435082.jpg"
       }}/> 
        
@@ -222,9 +239,24 @@ const [authError, setauthError] = useState(false);
         justifyContent:"center",
         alignItems:"center"
        }}>
-       
+
        </Aleatorio>}
-       
+      
+       </div>
+       <div className={`gif-container ${isHome ? "gif-visible": ""}`}>
+        <CSSTransition 
+        key={isHome ? "home" : "not-home"} 
+        in={isHome}
+        timeout={3000}
+        classNames="gif"
+        unmountOnExit>
+ {state => {
+    console.log("Transition state:", state);
+    return (
+      <img src={supernova} alt="Transicion" className="gif" />
+    );
+  }}      
+    </CSSTransition>
        </div>
       </div>
         

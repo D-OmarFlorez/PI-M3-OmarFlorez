@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import about from "./about.css"
+import "./about.css"
 
 const About = () => {
   const [evento, setEvento] = useState(null);

@@ -1,14 +1,28 @@
 .estiloPrincipal{
-    display: flex;
-    justify-Content: space-between;
-    position: fixed;
-    float: left;
-    align-items: flex-start;
     top:"0";
     left:"0";
-    width:"100%";
-     background-image: url('https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pxfuel.com%2Fes%2Fdesktop-wallpaper-jarbu&psig=AOvVaw0PgpYjNRtVdj95fPnbSfng&ust=1696029080652000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCLDJ0d22zoEDFQAAAAAdAAAAABAE');
+    width:"50%";
     background-size: cover;
     background-repeat: no-repeat; 
-    z-Index: '100';
   }
+
+.left-buttons{
+  display:block;
+  align-items: left;
+  width: 50%;
+  gap: 10px;
+}
+.right-buttons{
+  display: flex;
+  gap: 10px;
+}
+.navbar button:hover{
+  background-color: #777;
+}
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #00cd0a;
+  padding: 10px;
+}
