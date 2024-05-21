@@ -85,7 +85,7 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 myFavorites: state.myFavorites.filter(({id}) => {
-            console.log(id)
+            c
                     return id !== action.payload
                 
                 })

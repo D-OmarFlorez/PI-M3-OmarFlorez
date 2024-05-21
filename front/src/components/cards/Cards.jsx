@@ -3,6 +3,7 @@ import "./Cards.css"
 // import {randomCharacter} from '../nav/Nav'
 const Cards = ({ characters, onClose, onCardClick, randomCharacter, showCloseButton}) => {
    characters = Array.isArray(characters) ? characters : [];
+   console.log();
   
    const allCharacters  = [randomCharacter, ...characters];
    return(

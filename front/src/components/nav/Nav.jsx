@@ -6,6 +6,7 @@ import BotonEstilo from "./botones/Botones";
 import axios from "axios";
 import Cards from "../cards/Cards";
 import ReproductorDeAudio from "../audios/Audios";
+import Musica from "../musica/musica";
 import evilmorty from "./botones/evilmorty.mp3"
 import inter from './botones/inter.mp3'
 const Nav =({onSearch, limpiarHome, mostrarAbout, }) =>{
@@ -58,8 +59,13 @@ const Nav =({onSearch, limpiarHome, mostrarAbout, }) =>{
    return(
   <div className=" estiloPrincipal">
       <ReproductorDeAudio src={evilmorty} autoPlay={true}  />
+
+
     <nav className="navbar">
       {/* <div className="left-buttons"> */}
+      <Link to='/Music'>
+        <button >🎶Music</button>
+      </Link>
 
       <Link to='/About'>
         <button onClick={mostrarAbout}>
@@ -124,6 +130,7 @@ const Nav =({onSearch, limpiarHome, mostrarAbout, }) =>{
      
       {/* </div> */}
     </nav>
+
     <hr style={{ 
   borderStyle: "none", 
   height: "2px", 

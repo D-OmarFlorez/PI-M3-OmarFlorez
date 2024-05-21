@@ -1,9 +1,4 @@
-import { 
-    ADD_FAV, 
-    REMOVE_FAV,
-    GENDER,
-    ORDER
-} from "./action-types"
+
 
 export const addFavorite = (character) => {
     return { type: ADD_FAV, payload: character }

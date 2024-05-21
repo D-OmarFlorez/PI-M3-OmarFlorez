@@ -4,10 +4,13 @@ import { filterCards, orderCards } from "../../redux/actions";
 import Select from "../select/Select";
 import { useEffect, useState } from "react";
 import './favorite.css'
+import Card from "../card/Card";
+import axios from 'axios'
 
 const Favorites = () => {
     const [detalles, setDetalles] = useState(false);
     const dispatch = useDispatch();
+    const character = useSelector((state)=> state.characters)
     const  myFavorites  = useSelector((state) => state.myFavorites);
 
     const handleChange = (event) => {
@@ -32,6 +35,17 @@ const Favorites = () => {
         }
     };
 
+    const fetchCharacterDetails = async (id) => {
+        try {
+          const response = await axios(`http://localhost:3001/rickandmorty/character/${id}`);
+          const { data } = response;
+          const character= data
+          return character;
+        } catch (error) {
+          console.error('Error al obtener detalles del personaje:', error);
+        }
+      };
+
     const handleOverlayClick = () => {
         setDetalles(false);
     };
@@ -49,8 +63,11 @@ const Favorites = () => {
                 handleChange={handleChange}
             />
             <Cards
-                characters = {myFavorites} onCardClick={handleCardClick} showCloseButton={false}
-            />
+               
+                characters = {character} onCardClick={handleCardClick} showCloseButton={false}
+                
+             > 
+               </Cards>
             {detalles && (
                 <div onClick={handleOverlayClick} style={{ position: 'fixed', top: '50%', left: '50%', right: 0, width: '40%', height: '91%', bottom: 0, backgroundColor: 'rgba(0,0,0,0.5)', transform: "translate(-50%, -50%)", overflow: "auto", border: "4px solid black" }}>
                     <div className="background">
@@ -71,5 +88,4 @@ const Favorites = () => {
         </div>
     );
 }
-
 export default Favorites;

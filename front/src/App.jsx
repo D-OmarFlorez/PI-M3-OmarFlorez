@@ -7,7 +7,7 @@ import Cards from './components/cards/Cards.jsx';
 import Nav from './components/nav/Nav';
 import About from './components/about/About';
 import Detail from './components/detail/Detail';
-import Form from './components/form/Form';
+import Form from './components/form/formi.jsx';
 import Favorites from './components/favorites/Favorites';
 import NotFound from './components/404notfound/NotFound';
 import holagif from './components/form/styles/videos/hola.gif'
@@ -18,13 +18,13 @@ import axios from 'axios'
 /*hooks*/
 import {useState, useEffect} from 'react';
 import { useLocation, Route, Routes, useNavigate} from 'react-router-dom';
-import Aleatorio from './components/citas/Citas';
-import SoundCloudPlayer from 'react-player/soundcloud';
-import ReproductorDeSpotify from './components/audios/Audios';
 import JuegoRick from './components/juegoRick/Juego';
+import Musica from './components/musica/musica';
+import { Auth0Provider } from '@auth0/auth0-react';
 
 /*credentials*/
-
+const domain ='dev-1dupes0rz3lqishv.us.auth0.com'
+const clientId = 'FlMFUCezIETLwc98aDwdgQ33CtStaGz8'
 const App = () => {
 
   const [detalles, setdetalles] = useState (false);
@@ -86,58 +86,28 @@ const onSearch = (id) => {
         throw error;
       });
   };
-  const query = id
   let apiUrl;
     apiUrl = `https://rickandmortyapi.com/api/character/?name=${id}`;
     searchPage(apiUrl);
   }
 }
 
-
-
-// const onSearch = async (id) => {
-//   try {
-//     if(!isNaN(id)){
-//     const response = await axios(`http://localhost:3001/rickandmorty/character/${id}`);
-//     const { data } = response;
-
-//     if (data.name) {
-//       if (!characters.some((character) => character.id === data.id)) {
-//         setCharacters((oldChars) => [...oldChars, data]);
-//       } else if (data.results) {
-//         setCharacters(data.results);
-//       } else {
-//         alert('Este personaje ya está en la lista.');
-//       }
-//     } else {
-//       alert('¡No hay personajes con este ID!');
-//     }
-//   }else{
-//     const response = await axios(`https://rickandmortyapi.com/api/character/?name=${name}`);
-//     const { data } = response;
-
-//     if (data.name) {
-//       if (!characters.some((character) => character.name == data.name)) {
-//         setCharacters((oldChars) => [...oldChars, data]);
-//       } else if (data.results) {
-//         setCharacters(data.results);
-//       } else {
-//         alert('Este personaje ya está en la lista.');
-//       }
-//     } else {
-//       alert('¡No hay personajes con este Nombre!');
-//     }
-//   }
-//   } catch (error) {
-//     throw Error('Error al buscar el personaje:', error);
-//   }
-// };
-
-
-
 const limpiarHome = () =>{
   setCharacters([]);
 }
+const login = (userData) => {
+
+  const { email, password } = userData;
+  const URL = 'http://localhost:3001/rickandmorty/login/';
+  axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+    const { access } = data;
+    if (access) {
+      navigate('/home');
+    } else {
+    }
+  });
+};
+
 
 const handleCardClick = async (id) => {
   try {
@@ -176,15 +146,15 @@ const handleCardClick = async (id) => {
     //     setAccess(true);
     //     navigate('/home'); // Usamos la constante navigate aquí
     //   }
-    function login(userData) {
-      const { email, password } = userData;
-      const URL = 'http://localhost:3001/rickandmorty/login/';
-      axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
-         const { access } = data;
-         setAccess(data);
-         access && navigate('/home');
-      });
-   }  
+  //   function login(userData) {
+  //     const { email, password } = userData;
+  //     const URL = 'http://localhost:3001/rickandmorty/login/';
+  //     axios(URL + `?email=${email}&password=${password}`).then(({ data }) => {
+  //        const { access } = data;
+  //        setAccess(data);
+  //        access && navigate('/home');
+  //     });
+  //  }  
   
     
 const [mostrarAcerca, setMostrarAcerca] = useState(false);
@@ -195,6 +165,10 @@ const mostrarAbout = ()=>{
 const [randomCharacter, setRandomCharacter]= useState(null); 
 
 return (
+  <Auth0Provider
+    domain={domain}
+    clientId={clientId}
+    redirectUri={window.location.origin}>
   <div>
    {/* <LoginComponent BackgroundImage='https://i.pinimg.com/originals/34/ac/0e/34ac0efa00a8507bf9c231866c3bdc81.jpg' /> */}
    <LoginComponent BackgroundImage={holagif}/>
@@ -213,6 +187,7 @@ return (
       <Route path ='/Detail/:id' element ={<Detail character={detalles} onClose= {handleClose}/>}/>
       <Route path='/' element={<Form login={login}/>}/>    
       <Route path='/Favorites' element={<Favorites Cards={Cards}/>}/>
+      <Route path='Music' element = {<Musica/>}/>
       <Route path ='/Game' element ={<JuegoRick/>}/>
       <Route path='*' Component={<NotFound/>}/>
   
@@ -221,7 +196,7 @@ return (
 
       </div>
       </div>
-      
+      </Auth0Provider>
   )
   } 
   

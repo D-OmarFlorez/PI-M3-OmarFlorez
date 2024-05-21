@@ -39,7 +39,7 @@ a:hover {
     margin: 0;
     cursor: url('/front/src/cursor.png');
     min-width: 620px;
-    min-height: 20vh;
+    min-height: 50vh;
     /* background: linear-gradient(#141e30, #243b55); */
   }
 
